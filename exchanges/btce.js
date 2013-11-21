@@ -71,12 +71,16 @@ Trader.prototype.retry = function(method, callback, haste) {
 
 Trader.prototype.getPortfolio = function(callback) {
   var calculate = function(err, data) {
-
     if(err)
       return this.retry(this.btce.getInfo, calculate);
 
     var portfolio = [];
-      console.log(data.return.funds);
+      //console.log(data.return.funds);
+      var funds = data.return.funds;
+
+      for (var key in funds){
+          console.log(key, funds[key]);
+      }
       portfolio.push({name: this.asset, amount: data.return.funds.xpm});
       /*
     _.each(data.return.funds.xpm, function(data) {
