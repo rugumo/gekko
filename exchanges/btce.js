@@ -81,7 +81,7 @@ Trader.prototype.getPortfolio = function(callback) {
         console.log(data);
         console.log('1');
 
-     // portfolio.push({name: key.toUpperCase(), amount: data[key]});
+      portfolio.push({name: config.asset, amount: data});
     });
     callback(err, portfolio);
   }
