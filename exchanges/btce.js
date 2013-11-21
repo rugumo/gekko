@@ -75,14 +75,12 @@ Trader.prototype.getPortfolio = function(callback) {
       return this.retry(this.btce.getInfo, calculate);
 
     var portfolio = [];
-    _.each(data.return, function(data) {
-        for (var key in data) {
-            if (data.hasOwnProperty(key)) {
+    _.each(data.return.funds, function(data) {
+
         console.log(data);
         console.log('1');
-            }
-        }
-      portfolio.push({name: key.toUpperCase(), amount: data[key]});
+
+     // portfolio.push({name: key.toUpperCase(), amount: data[key]});
     });
     callback(err, portfolio);
   }
