@@ -88,7 +88,7 @@ TradingMethod.prototype.calculateEMAs = function() {
 
   log.debug('calced EMA properties for new candle:');
   _.each(['short', 'long', 'diff'], function(e) {
-    log.debug('\t', e, 'ema', _.last(this.ema[e]).toFixed(3));
+    log.debug('\t', e, 'ema', _.last(this.ema[e]).toFixed(5));
   }, this);
 
   if(!this.fetchingHistorical)
@@ -126,8 +126,8 @@ TradingMethod.prototype.calculateEMAdiff = function() {
 }
 
 TradingMethod.prototype.advice = function() {
-  var diff = _.last(this.ema.diff).toFixed(3);
-  var price = _.last(this.candles.close).toFixed(3);
+  var diff = _.last(this.ema.diff).toFixed(5);
+  var price = _.last(this.candles.close).toFixed(5);
   var message = '@ ' + price + ' (' + diff + ')';
   if(config.backtest.enabled)
     message += '\tat \t' + moment.unix(this.currentTimestamp).format('YYYY-MM-DD HH:mm:ss');
