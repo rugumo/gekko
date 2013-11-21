@@ -80,8 +80,9 @@ Trader.prototype.getPortfolio = function(callback) {
 
       for (var key in funds){
           console.log(key, funds[key]);
+          portfolio.push({name: key.toUpperCase(), amount: funds[key]});
       }
-      portfolio.push({name: this.asset, amount: data.return.funds.xpm});
+
       /*
     _.each(data.return.funds.xpm, function(data) {
 
