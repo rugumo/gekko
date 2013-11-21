@@ -93,7 +93,7 @@ Trader.prototype.getTicker = function(callback) {
     });
     callback(err, ticker);
   }
-  this.btce.ticker(this.pair, _.bind(set, this));
+  this.btce.ticker({ pair: this.pair}, _.bind(set, this));
 }
 
 Trader.prototype.getTrades = function(since, callback, descending) {
