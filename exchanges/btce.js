@@ -176,6 +176,7 @@ Trader.prototype.getFee = function(callback) {
 
 Trader.prototype.checkOrder = function(order, callback) {
   var check = function(err, result) {
+      console.log(result);
     // btce returns an error when you have no open trades
     // right now we assume on every error that the order
     // was filled.
