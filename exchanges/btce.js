@@ -70,6 +70,7 @@ Trader.prototype.retry = function(method, callback, haste) {
 
 Trader.prototype.getPortfolio = function(callback) {
   var calculate = function(err, data) {
+      console.log(data.return);
     if(err)
       return this.retry(this.btce.getInfo, calculate);
 
