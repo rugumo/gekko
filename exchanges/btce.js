@@ -99,7 +99,6 @@ Trader.prototype.getTicker = function(callback) {
   // BTCE-e doesn't state asks and bids in its
   // ticker
   var set = function(err, data) {
-      console.log(this.pair);
     var ticker = _.extend(data.ticker, {
       ask: data.ticker.buy,
       bid: data.ticker.sell
