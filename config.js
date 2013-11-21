@@ -33,7 +33,7 @@ config.normal = {
   asset: 'BTC',
   tradingEnabled: false,
   key: '',
-  secret: '',
+  secret: ''
 }
 
 // example Bitstamp Config:

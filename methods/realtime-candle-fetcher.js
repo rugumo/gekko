@@ -156,8 +156,10 @@ CandleCalculator.prototype.fillNewBucket = function(trades) {
 
   if(!this.buckets[0].length) {
     // none of the recieved trades were after the previous candle
+      // Exponential back off
+      var backOffTimer = 0;
     log.debug('did not receive trades for most recent candle, retrying..');
-    return setTimeout(this.getNewCandle, +moment.duration(10, 'seconds'));
+    return setTimeout(function(){backOffTimer+=10;this.getNewCandle}, +moment.duration(backOffTimer, 'seconds'));
   }
 
   this.calculateCandle();

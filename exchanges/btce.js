@@ -8,7 +8,7 @@ var log = require('../log')
 var Trader = function(config) {
   this.key = config.key;
   this.secret = config.secret;
-  this.pair = 'btc_' + config.currency.toLowerCase();
+  this.pair =  config.asset.toLowerCase() + '_' + config.currency.toLowerCase();
   this.name = 'BTC-E';
 
   _.bindAll(this);
@@ -94,6 +94,65 @@ Trader.prototype.getTicker = function(callback) {
   }
   this.btce.ticker(this.pair, _.bind(set, this));
 }
+
+Trader.prototype.getTrades = function(since, callback, descending) {
+//console.log(since);
+    if(since && !_.isNumber(since))
+        since = util.toMicro(since);
+    var args = {'pair':this.pair,'count':100};
+    this.btce.trades(args, _.bind(function(err,trades) {
+        if (!trades)
+            return this.retry(this.getTrades, args);
+
+        if (trades.length === 0)
+            return this.retry(this.getTrades, args);
+
+        var trades2 = trades.sort(function(a,b){
+            a = new Date(a.date);
+            b = new Date(b.date);
+            return a<b?-1:a>b?1:0;
+        });
+        // normalize the data
+        var trades3 = [];
+        _.each(trades2, function(array) {
+            var test = moment.unix(array.date);
+            var tradeSince = util.toMicro(test);
+
+            if(since){
+//              log.debug('since time');
+                if(since <=tradeSince){
+//log.debug(since +' = ' + tradeSince);
+                    trades3.push({
+                        date: array.date,
+                        price: array.price,
+                        amount: array.amount
+                    });
+                }else{
+//log.debug('Not A New Trade');
+                }
+            }else{
+                //    log.debug('No since time');
+                trades3.push({
+                    date: array.date,
+                    price: array.price,
+                    amount: array.amount
+                });
+
+            }
+        });
+
+//console.log(trades2);
+
+        if(descending)
+            callback(trades3.reverse());
+        else
+            callback(trades3);
+    }, this));
+}
+
+
+
+
 
 Trader.prototype.getFee = function(callback) {
   // BTCE-e doesn't have different fees based on orders
