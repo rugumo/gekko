@@ -28,9 +28,9 @@ config.EMA = {
 // Monitor the live market
 config.normal = {
   enabled: true,
-  exchange: 'MtGox', // 'MtGox', 'BTCe' or 'Bitstamp'
-  currency: 'USD',
-  asset: 'BTC',
+  exchange: 'BTCe', // 'MtGox', 'BTCe' or 'Bitstamp'
+  currency: 'BTC',
+  asset: 'XPM',
   tradingEnabled: false,
   key: '',
   secret: ''
@@ -74,7 +74,7 @@ config.profitCalculator = {
   // start balance, on what the current balance is compared with
   simulationBalance: {
     // these are in the unit types configured in the watcher.
-    asset: 1,
+    asset: 50,
     currency: 100,
   },
   // only want report after a sell? set to `false`.
@@ -109,9 +109,9 @@ config.backtest = {
 
 // monitor what market?
 config.watch = {
-  exchange: 'MtGox',
-  currency: 'USD',
-  asset: 'BTC'
+  exchange: 'BTCe',
+  currency: 'BTC',
+  asset: 'XPM'
 }
 
 // real trading
@@ -128,8 +128,8 @@ config.traders = [
     exchange: 'BTCe',
     key: '',
     secret: '',
-    currency: 'USD',
-    asset: 'BTC',
+    currency: 'BTC',
+    asset: 'XPM',
     enabled: false
   },
   {
