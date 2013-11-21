@@ -8,6 +8,7 @@ var log = require('../log')
 var Trader = function(config) {
   this.key = config.key;
   this.secret = config.secret;
+  this.asset = config.asset;
   this.pair =  config.asset.toLowerCase() + '_' + config.currency.toLowerCase();
   this.name = 'BTC-E';
 
@@ -76,7 +77,7 @@ Trader.prototype.getPortfolio = function(callback) {
 
     var portfolio = [];
       console.log(data.return.funds.xpm);
-      portfolio.push({name: config.asset, amount: data.return.funds.xpm});
+      portfolio.push({name: this.asset, amount: data.return.funds.xpm});
       /*
     _.each(data.return.funds.xpm, function(data) {
 
