@@ -169,6 +169,15 @@ CandleCalculator.prototype.calculateCandle = function() {
   var bucket = this.buckets[this.currentBucket];
   // because buckets (and their contents) are chronologically reversed 
   // the _last_ item is the open and the _first_ is the close
+    if(typeof _.last(bucket) == 'undefined')
+        return false;
+    if(typeof _.max(bucket) == 'undefined')
+        return false;
+    if(typeof _.min(bucket) == 'undefined')
+        return false;
+    if(typeof _.first(bucket) == 'undefined')
+        return false;
+
   this.candles.open.push(_.last(bucket));
   this.candles.high.push(_.max(bucket));
   this.candles.low.push(_.min(bucket));
