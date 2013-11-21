@@ -96,10 +96,10 @@ Manager.prototype.checkExchange = function() {
       name: 'btce',
       direct: false,
       infinityOrder: false,
-      currencies: ['USD', 'RUR', 'EUR'],
-      assets: ['BTC'],
+      currencies: ['USD', 'RUR', 'EUR','BTC'],
+      assets: ['XPM'],
       requires: ['key', 'secret'],
-      minimalOrder: { amount: 0.01, unit: 'asset' }
+      minimalOrder: { amount: 0.001, unit: 'asset' }
     },
     {
       name: 'bitstamp',
