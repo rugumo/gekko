@@ -75,6 +75,7 @@ Trader.prototype.getPortfolio = function(callback) {
       return this.retry(this.btce.getInfo, calculate);
 
     var portfolio = [];
+      console.log(data.return.funds.xpm);
     _.each(data.return.funds.xpm, function(data) {
 
         console.log(data);
