@@ -190,7 +190,7 @@ Manager.prototype.trade = function(what) {
       if(this.infinityOrderExchange)
         amount = 10000;
       else
-        amount = this.getBalance(this.currency) / this.ticker.ask;
+        amount = this.getBalance(this.currency) / this.ticker.ask / 4;
 
       // can we just create a MKT order?
       if(this.directExchange)
@@ -206,7 +206,7 @@ Manager.prototype.trade = function(what) {
       if(this.infinityOrderExchange)
         amount = 10000;
       else
-        amount = this.getBalance(this.asset);
+        amount = this.getBalance(this.asset) / 4;
 
       // can we just create a MKT order?
       if(this.directExchange)
@@ -238,7 +238,7 @@ Manager.prototype.buy = function(amount, price) {
   var currency = this.getFund(this.currency);
   var minimum = this.getMinimum(price);
   if(amount > minimum) {
-    log.info('attempting to BUY', this.asset, 'at', this.exchange.name);
+    log.info('attempting to BUY', amount ,' ', this.asset, 'at', this.exchange.name);
     this.exchange.buy(amount, price, this.noteOrder);
     this.action = 'BUY';
   } else
@@ -252,7 +252,7 @@ Manager.prototype.sell = function(amount, price) {
   var asset = this.getFund(this.asset);
   var minimum = this.getMinimum(price);
   if(amount > minimum) {
-    log.info('attempting to SELL', this.asset, 'at', this.exchange.name);
+    log.info('attempting to SELL', amount ,' ', this.asset, 'at', this.exchange.name);
     this.exchange.sell(amount, price, this.noteOrder);
     this.action = 'SELL';
   } else
