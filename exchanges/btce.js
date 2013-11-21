@@ -76,9 +76,13 @@ Trader.prototype.getPortfolio = function(callback) {
 
     var portfolio = [];
     _.each(data.return, function(data) {
+        for (var key in data) {
+            if (data.hasOwnProperty(key)) {
         console.log(data);
         console.log('1');
-      //portfolio.push({name: asset.toUpperCase(), amount: amount});
+            }
+        }
+      portfolio.push({name: key.toUpperCase(), amount: data[key]});
     });
     callback(err, portfolio);
   }
