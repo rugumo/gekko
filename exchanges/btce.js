@@ -1,4 +1,4 @@
-var BTCE = require('btc-e');
+var BTCE = require('btce');
 
 var moment = require('moment');
 var util = require('../util');
