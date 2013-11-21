@@ -94,9 +94,11 @@ CandleCalculator.prototype.fillBuckets = function(trades) {
     return;
 
   // if we haven't got a single useful trade bail out
-  if(!latestTradeDate)
+  if(!latestTradeDate){
+      log.debug("Trade Error");
     return;
     //throw 'Failed to load historical trades from ' + this.watcher.name;
+  }
 
   log.debug('need new trades, refetching', this.watcher.name);
 
