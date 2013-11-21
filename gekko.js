@@ -17,6 +17,7 @@
 */
 
 // helpers
+process.env.TZ = 'UTC';
 var moment = require('moment');
 var _ = require('lodash');
 var util = require('./util');
