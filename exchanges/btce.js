@@ -99,7 +99,7 @@ Trader.prototype.getTrades = function(since, callback, descending) {
 //console.log(since);
     if(since && !_.isNumber(since))
         since = util.toMicro(since);
-    var args = {'pair':this.pair,'count':100};
+    var args = {'pair':this.pair,'count':5000};
     this.btce.trades(args, _.bind(function(err,trades) {
         if (!trades)
             return this.retry(this.getTrades, args);
