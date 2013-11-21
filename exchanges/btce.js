@@ -33,7 +33,7 @@ Trader.prototype.buy = function(amount, price, callback) {
 
   // workaround for nonce error
   setTimeout(_.bind(function() {
-    this.btce.trade(this.pair, 'buy', price, amount, _.bind(set, this));
+    this.btce.trade({'pair': this.pair, 'type':'buy', 'rate': price,'amount': amount}, _.bind(set, this));
   }, this), 1000);
 }
 
@@ -53,7 +53,8 @@ Trader.prototype.sell = function(amount, price, callback) {
 
   // workaround for nonce error
   setTimeout(_.bind(function() {
-    this.btce.trade(this.pair, 'sell', price, amount, _.bind(set, this));
+      //{'pair': 'btc_usd', 'type': 'buy', 'rate': 100.0, 'amount': 2.0}
+    this.btce.trade({'pair': this.pair, 'type':'sell', 'rate': price,'amount': amount}, _.bind(set, this));
   }, this), 1000);
 }
 
