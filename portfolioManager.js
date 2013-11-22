@@ -97,7 +97,7 @@ Manager.prototype.checkExchange = function() {
       direct: false,
       infinityOrder: false,
       currencies: ['USD', 'RUR', 'EUR','BTC'],
-      assets: ['XPM'],
+      assets: ['XPM','BTC','NMC','LTC'],
       requires: ['key', 'secret'],
       minimalOrder: { amount: 0.001, unit: 'asset' }
     },
