@@ -58,7 +58,6 @@ CandleCalculator.prototype.fillBuckets = function(trades) {
 
   var emptyBucket = true;
   var nextBucketTime = util.intervalsAgo(this.currentBucket);
-
   _.every(trades, function(trade) {
     var time = moment.unix(trade.date);
     // as long as this trade is to recent
