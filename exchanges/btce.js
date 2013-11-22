@@ -222,9 +222,6 @@ Trader.prototype.cancelOrder = function(order) {
   // TODO: properly test
   var devNull = function() {}
     var liveOrders = function(err,data){
-        //console.log('-----------------');
-        //console.log(data);
-        //console.log(data);
         if(err){
 
         }else{
@@ -232,8 +229,7 @@ Trader.prototype.cancelOrder = function(order) {
             var listOrders = data.return;
             for (var key in listOrders){
                 // Once found cancel
-                console.log(key);
-                this.btce.cancelOrder({"order_id":key}, devNull);
+                this.btce.cancelOrder({'order_id':key}, devNull);
             }
         }
     }
