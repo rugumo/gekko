@@ -12,7 +12,6 @@ var _ = require('lodash');
 var util = require('../util.js');
 var Util = require('util');
 var log = require('../log.js');
-var mobicon  = require('mobiconstatistics');
 var EventEmitter = require('events').EventEmitter;
 
 // `abstract` constructor
@@ -60,14 +59,6 @@ CandleCalculator.prototype.fillBuckets = function(trades) {
   var emptyBucket = true;
   var nextBucketTime = util.intervalsAgo(this.currentBucket);
 
-    var tradeData = [];
-    _.each(trades, function(trade) {
-        tradeData.push(trade.price);
-
-    });
-    var interval = 4;
-    var movingAverage = mobicon.calcMovingAverage(tradeData, interval);
-    log.debug('Predicted Next :', movingAverage);
   _.every(trades, function(trade) {
     var time = moment.unix(trade.date);
     // as long as this trade is to recent
