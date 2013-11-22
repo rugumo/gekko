@@ -215,7 +215,20 @@ Trader.prototype.checkOrder = function(order, callback) {
 Trader.prototype.cancelOrder = function(order) {
   // TODO: properly test
   var devNull = function() {}
-  this.btce.orderList(order, devNull);
+    var liveOrders = function(err,data){
+        if(err){
+
+        }else{
+            // Loop all open orders and see if we get a match
+            var listOrders = data.result;
+            for (var key in listOrders){
+                // Once found cancel
+                this.btce.cancelOrder({"order_id":key}, devNull);
+            }
+        }
+    }
+  this.btce.orderList({pair:this.pair}, _.bind(liveOrders, this));
+
 }
 
 module.exports = Trader;
