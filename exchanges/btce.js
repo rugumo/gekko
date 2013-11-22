@@ -223,6 +223,8 @@ Trader.prototype.cancelOrder = function(order) {
   // TODO: properly test
   var devNull = function() {}
     var liveOrders = function(err,data){
+        console.log('-----------------');
+        console.log(data);
         console.log(data);
         if(err){
 
