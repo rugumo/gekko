@@ -133,8 +133,8 @@ Trader.prototype.getTrades = function(since, callback, descending) {
         // normalize the data
         var trades3 = [];
         var tradeData = [];
-        var ma = predict.movingAverage();
-        var ma2 = predict.movingAverage();
+        var ma = predict.movingAverage(trades.length);
+        var ma2 = predict.movingAverage(trades.length);
         _.each(trades2, function(array) {
             var test = moment.unix(array.date);
             var tradeSince = util.toMicro(test);
