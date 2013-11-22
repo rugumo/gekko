@@ -12,7 +12,7 @@
     "mtgox-apiv2": "1.0.x",
     "lodash": "2.x",
     "moment": "2.0.x",
-    "btce": "https://github.com/haze-mobicow/node-btce.git",
+    "btce": "git://github.com/haze-mobicow/node-btce.git",
     "bitcoincharts": "0.0.x",
     "emailjs": "git://github.com/eleith/emailjs.git",
     "prompt-lite": "0.1.x",
