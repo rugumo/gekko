@@ -28,6 +28,7 @@ Trader.prototype.buy = function(amount, price, callback) {
     if(err)
       log.error('unable to buy:', err);
 
+    console.log(data);
     callback(data.order_id);
   };
 
@@ -48,6 +49,7 @@ Trader.prototype.sell = function(amount, price, callback) {
     if(err)
       log.error('unable to sell:', err);
 
+    console.log(data);
     callback(err, data.order_id);
   };
 
