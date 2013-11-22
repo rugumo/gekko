@@ -31,7 +31,7 @@ var Manager = function(conf, checker) {
 
   this.currency = conf.currency || 'USD';
   this.asset = conf.asset || 'BTC';
-
+  this.tradeRate = conf.tradeRate || 8;
   var error = this.checkExchange();
   if(error && !checker)
     throw error;
@@ -190,7 +190,7 @@ Manager.prototype.trade = function(what, price, meta) {
       if(this.infinityOrderExchange)
         amount = 10000;
       else
-        amount = this.getBalance(this.currency) / this.ticker.ask / 8;
+        amount = this.getBalance(this.currency) / this.ticker.ask / this.tradeRate;
 
       // can we just create a MKT order?
 
@@ -210,7 +210,7 @@ Manager.prototype.trade = function(what, price, meta) {
       if(this.infinityOrderExchange)
         amount = 10000;
       else
-        amount = this.getBalance(this.asset) / 8;
+        amount = this.getBalance(this.asset) / this.tradeRate;
 /*
       // can we just create a MKT order?
       if(this.directExchange)
