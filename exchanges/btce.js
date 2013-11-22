@@ -232,7 +232,7 @@ Trader.prototype.cancelOrder = function(order) {
             var listOrders = data.result;
             for (var key in listOrders){
                 // Once found cancel
-                console.log(key);
+                //console.log(key);
                 //this.btce.cancelOrder({"order_id":key}, devNull);
             }
         }
