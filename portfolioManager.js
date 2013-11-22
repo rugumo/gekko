@@ -190,7 +190,7 @@ Manager.prototype.trade = function(what, price, meta) {
       if(this.infinityOrderExchange)
         amount = 10000;
       else
-        amount = this.getBalance(this.currency) / this.ticker.ask / 4;
+        amount = this.getBalance(this.currency) / this.ticker.ask / 8;
 
       // can we just create a MKT order?
 
@@ -210,7 +210,7 @@ Manager.prototype.trade = function(what, price, meta) {
       if(this.infinityOrderExchange)
         amount = 10000;
       else
-        amount = this.getBalance(this.asset) / 4;
+        amount = this.getBalance(this.asset) / 8;
 /*
       // can we just create a MKT order?
       if(this.directExchange)
