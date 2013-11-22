@@ -134,6 +134,7 @@ Trader.prototype.getTrades = function(since, callback, descending) {
         var trades3 = [];
         var tradeData = [];
         var ma = predict.movingAverage();
+        var ma2 = predict.movingAverage();
         _.each(trades2, function(array) {
             var test = moment.unix(array.date);
             var tradeSince = util.toMicro(test);
@@ -145,7 +146,9 @@ Trader.prototype.getTrades = function(since, callback, descending) {
                         amount: array.amount
                     });
                     ma.pushValues([array.price]);
+                    ma2.pushValues([array.amount]);
                     tradeData.push(array.price);
+
                 }else{
                 }
             }else{
@@ -155,11 +158,14 @@ Trader.prototype.getTrades = function(since, callback, descending) {
                     amount: array.amount
                 });
                 ma.pushValues([array.price]);
+                ma2.pushValues([array.amount]);
                 tradeData.push(array.price);
             }
         });
-        var movingAverage = ma.predictNextValue();
-        log.debug('Predicted Next :', movingAverage);
+        var movingAveragePrice = ma.predictNextValue();
+        var movingAverageAmount = ma.predictNextValue();
+        log.debug('Predicted Next Price:', movingAveragePrice);
+        log.debug('Predicted Next Amount:', movingAverageAmount);
 //console.log(trades2);
 
         if(descending)
