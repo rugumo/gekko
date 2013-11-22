@@ -200,8 +200,8 @@ Trader.prototype.checkOrder = function(order, callback) {
         console.log("ERR");
       callback(false, true);
     }else{
-        console.log(result.return);
-      callback(err, !result[order]);
+        console.log(result);
+      callback(err, !result.return);
     }
   };
 
