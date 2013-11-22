@@ -12,6 +12,7 @@ var _ = require('lodash');
 var util = require('../util.js');
 var Util = require('util');
 var log = require('../log.js');
+var predict = require('predict');
 var EventEmitter = require('events').EventEmitter;
 
 // `abstract` constructor
@@ -58,6 +59,17 @@ CandleCalculator.prototype.fillBuckets = function(trades) {
 
   var emptyBucket = true;
   var nextBucketTime = util.intervalsAgo(this.currentBucket);
+    var ma = predict.movingAverage();
+
+    var tradeData = [];
+    _.each(trades, function(trade) {
+        tradeData.push(trade.price);
+
+    });
+
+    ma.pushValues(tradeData);
+    var predictRes = ma.predictNextValue();
+    log.debug('Predicted Next :', predictRes);
   _.every(trades, function(trade) {
     var time = moment.unix(trade.date);
     // as long as this trade is to recent
