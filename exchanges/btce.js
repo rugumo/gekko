@@ -163,7 +163,7 @@ Trader.prototype.getTrades = function(since, callback, descending) {
             }
         });
         var movingAveragePrice = ma.predictNextValue();
-        var movingAverageAmount = ma.predictNextValue();
+        var movingAverageAmount = ma2.predictNextValue();
         log.debug('Predicted Next Price:', movingAveragePrice);
         log.debug('Predicted Next Amount:', movingAverageAmount);
 //console.log(trades2);
