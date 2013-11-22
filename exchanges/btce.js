@@ -4,7 +4,7 @@ var moment = require('moment');
 var util = require('../util');
 var _ = require('lodash');
 var log = require('../log')
-var mobicon  = require('mobiconstatistics');
+var predict = require('predict');
 var Trader = function(config) {
   this.key = config.key;
   this.secret = config.secret;
@@ -133,6 +133,7 @@ Trader.prototype.getTrades = function(since, callback, descending) {
         // normalize the data
         var trades3 = [];
         var tradeData = [];
+        var ma = predict.movingAverage();
         _.each(trades2, function(array) {
             var test = moment.unix(array.date);
             var tradeSince = util.toMicro(test);
@@ -143,6 +144,7 @@ Trader.prototype.getTrades = function(since, callback, descending) {
                         price: array.price,
                         amount: array.amount
                     });
+                    ma.pushValues([array.price]);
                     tradeData.push(array.price);
                 }else{
                 }
@@ -152,11 +154,11 @@ Trader.prototype.getTrades = function(since, callback, descending) {
                     price: array.price,
                     amount: array.amount
                 });
+                ma.pushValues([array.price]);
                 tradeData.push(array.price);
             }
         });
-        var interval = 4;
-        var movingAverage = mobicon.calcMovingAverage(tradeData, interval);
+        var movingAverage = ma.predictNextValue();
         log.debug('Predicted Next :', movingAverage);
 //console.log(trades2);
 
