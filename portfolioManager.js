@@ -202,7 +202,7 @@ Manager.prototype.trade = function(what, price, meta) {
         if(price > tickerAvg){
             price = tickerAvg;
         }
-      this.buy(amount, price);
+      this.buy(amount, price+0.0019);
 
     } else if(what === 'SELL') {
 
