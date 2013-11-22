@@ -215,7 +215,7 @@ Trader.prototype.checkOrder = function(order, callback) {
     }
   };
 
-  this.btce.orderList({pair:this.pair}, _.bind(check, this));
+  this.btce.activeOrders({pair:this.pair}, _.bind(check, this));
 }
 
 Trader.prototype.cancelOrder = function(order) {
@@ -233,7 +233,7 @@ Trader.prototype.cancelOrder = function(order) {
             }
         }
     }
-  this.btce.orderList({pair:this.pair}, _.bind(liveOrders, this));
+  this.btce.activeOrders({pair:this.pair}, _.bind(liveOrders, this));
 
 }
 
