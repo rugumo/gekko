@@ -12,7 +12,7 @@ var _ = require('lodash');
 var util = require('../util.js');
 var Util = require('util');
 var log = require('../log.js');
-var mobicon  = require('mobiconStatistics');
+var mobicon  = require('mobiconstatistics');
 var EventEmitter = require('events').EventEmitter;
 
 // `abstract` constructor
