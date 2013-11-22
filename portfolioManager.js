@@ -183,7 +183,7 @@ Manager.prototype.trade = function(what, price, meta) {
 
   var act = function() {
    // var amount, price;
-      var amount;
+      var amount,tickerAvg;
     if(what === 'BUY') {
 
       // do we need to specify the amount we want to buy?
@@ -193,12 +193,15 @@ Manager.prototype.trade = function(what, price, meta) {
         amount = this.getBalance(this.currency) / this.ticker.ask / 4;
 
       // can we just create a MKT order?
-        /*
+
       if(this.directExchange)
-        price = false;
+          tickerAvg = false;
       else
-        price = this.ticker.ask - 0.00002;
-*/
+          tickerAvg = this.ticker.last;
+
+        if(price > tickerAvg){
+            price = tickerAvg;
+        }
       this.buy(amount, price);
 
     } else if(what === 'SELL') {
