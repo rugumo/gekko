@@ -176,20 +176,36 @@ Trader.prototype.getFee = function(callback) {
 
 Trader.prototype.checkOrder = function(order, callback) {
   var check = function(err, result) {
-      console.log(result);
+
     // btce returns an error when you have no open trades
     // right now we assume on every error that the order
     // was filled.
     //
     // TODO: check whether the error stats that there are no
     // open trades or that there is something else.
-    if(err)
+      /*
+       { success: 1,
+       return:
+       { '66308825':
+       { pair: 'xpm_btc',
+       type: 'sell',
+       amount: 82.18681026,
+       rate: 0.00145,
+       timestamp_created: 1385082642,
+       status: 0 } } }
+
+       */
+
+    if(err){
+        console.log("ERR");
       callback(false, true);
-    else
+    }else{
+        console.log(result.return);
       callback(err, !result[order]);
+    }
   };
 
-  this.btce.orderList({}, _.bind(check, this));
+  this.btce.orderList({pair:this.pair}, _.bind(check, this));
 }
 
 Trader.prototype.cancelOrder = function(order) {
