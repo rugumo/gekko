@@ -59,7 +59,6 @@ CandleCalculator.prototype.fillBuckets = function(trades) {
 
   var emptyBucket = true;
   var nextBucketTime = util.intervalsAgo(this.currentBucket);
-    var ma = predict.movingAverage();
 
     var tradeData = [];
     _.each(trades, function(trade) {
