@@ -211,7 +211,6 @@ Trader.prototype.checkOrder = function(order, callback) {
         console.log("ERR");
       callback(false, true);
     }else{
-        console.log(result);
       callback(err, !result.return);
     }
   };
