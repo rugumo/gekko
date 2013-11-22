@@ -102,6 +102,8 @@ Trader.prototype.getTicker = function(callback) {
   var set = function(err, data) {
     var ticker = _.extend(data.ticker, {
       ask: data.ticker.buy,
+      avg: data.ticker.avg,
+      last: data.ticker.last,
       bid: data.ticker.sell
     });
     callback(err, ticker);
